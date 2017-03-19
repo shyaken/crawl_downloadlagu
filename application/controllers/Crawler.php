@@ -38,4 +38,14 @@ class Crawler extends CI_Controller {
                 }
                 
 	}
+        
+        public function updateInformation() {
+            $this->load->model('Trackmodel');
+            $tracks = $this->Trackmodel->getAll();
+            foreach($tracks as $song) {
+                
+            }
+            print_r($tracks);
+            die;
+        }
 }

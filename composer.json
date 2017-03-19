@@ -17,6 +17,13 @@
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
 	},
 	"require-dev": {
-		"mikey179/vfsStream": "1.1.*"
-	}
+		"mikey179/vfsStream": "1.1.*",
+                "glenscott/soundcloud": "dev-psr-4"
+	},
+        "repositories": [
+            {
+                "type": "git",
+                "url": "https://github.com/mptre/php-soundcloud"
+            }
+        ]
 }

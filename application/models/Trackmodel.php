@@ -35,4 +35,8 @@ class Trackmodel extends CI_Model {
         public function save($data) {
             $this->db->replace('tracks', $data);
         }
+        
+        public function getAll() {
+            return $this->db->get('tracks')->result();
+        }
 }
