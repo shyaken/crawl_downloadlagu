@@ -31,6 +31,23 @@ class Crawler extends CI_Controller {
                         $songData['name'] = $songs[1][$j];
                         $analyze = explode('-', $songs[2][$j]);
                         $songData['soundcloud_id'] = $analyze[count($analyze) - 1]; 
+                        $soundCloudDataJson = file_get_contents('http://api.soundcloud.com/tracks/'.$songData['soundcloud_id'].'?client_id=1icoStToePrQoYeWLPCatk523oBFOAAr');
+                        $soundCloudData = json_decode($soundCloudDataJson);
+                        if(!empty($soundCloudData) && !empty($soundCloudData->id)) {
+                            if(!empty($soundCloudData->title)) {
+                                $songData['name'] = $soundCloudData->title;
+                            }
+                            $songData['soundcloud_listen'] = $soundCloudData->playback_count;
+                            $songData['soundcloud_download'] = $soundCloudData->download_count;
+                            $songData['size'] = $soundCloudData->original_content_size;
+                            $songData['format'] = $soundCloudData->original_format;
+                            $songData['bpm'] = $soundCloudData->bpm;
+                            $songData['genre'] = $soundCloudData->genre;
+                            $songData['description'] = $soundCloudData->description;
+                        } else {
+                            echo $soundCloudDataJson . "\n";
+                            continue;
+                        }
                         $data[] = $songData;
                         $this->Trackmodel->save($songData);
                     }
