@@ -31,7 +31,7 @@ class Crawler extends CI_Controller {
                         $songData['name'] = $songs[1][$j];
                         $analyze = explode('-', $songs[2][$j]);
                         $songData['soundcloud_id'] = $analyze[count($analyze) - 1]; 
-                        if($this->Trackmodel->checkBySoundcloundId($songData['soundcloud_id'])) {
+                        if($this->Trackmodel->checkBySoundcloudId($songData['soundcloud_id'])) {
                             echo "Duplicated \n";
                             continue;
                         }
@@ -48,6 +48,7 @@ class Crawler extends CI_Controller {
                             $songData['bpm'] = $soundCloudData->bpm;
                             $songData['genre'] = $soundCloudData->genre;
                             $songData['description'] = $soundCloudData->description;
+                            $songData['last_modified'] = $soundCloudData->last_modified;
                         } else {
                             echo $soundCloudDataJson . "\n";
                             continue;
