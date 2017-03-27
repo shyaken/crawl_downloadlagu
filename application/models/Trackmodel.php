@@ -39,4 +39,10 @@ class Trackmodel extends CI_Model {
         public function getAll() {
             return $this->db->get('tracks')->result();
         }
+        
+        public function checkBySoundcloudId($soundcloudId) {
+            $this->db->where('soundcloud_id', $soundcloudId);
+            $result = $this->db->get('tracks');
+            return ($result->num_rows() > 0);
+        }
 }
