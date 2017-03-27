@@ -41,9 +41,9 @@ class Crawler extends CI_Controller {
                             if(!empty($soundCloudData->title)) {
                                 $songData['name'] = $soundCloudData->title;
                             }
-                            $songData['soundcloud_listen'] = $soundCloudData->playback_count;
-                            $songData['soundcloud_download'] = $soundCloudData->download_count;
-                            $songData['size'] = $soundCloudData->original_content_size;
+                            $songData['soundcloud_listen'] = (int)$soundCloudData->playback_count;
+                            $songData['soundcloud_download'] = (int)$soundCloudData->download_count;
+                            $songData['size'] = (int)$soundCloudData->original_content_size;
                             $songData['format'] = $soundCloudData->original_format;
                             $songData['bpm'] = $soundCloudData->bpm;
                             $songData['genre'] = $soundCloudData->genre;
